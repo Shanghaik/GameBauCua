@@ -25,6 +25,13 @@
 
         private void btn_Play_Click(object sender, EventArgs e)
         {
+            if (!CheckBetMoney()) return;
+            
+            if (limit * betMoney == 0) // một trong 2 hoặc cả 2 bằng không nghĩa là chưa đặt
+            {
+                MessageBox.Show("Anh hai đi chơi không đặt cược à?");
+                return;
+            }
             Random r = new Random();
             // MessageBox.Show($"{r1}, {r2}, {r3}"); // Show for Test
             // Tạo 1 mảng chứa đường dẫn đến ảnh
@@ -47,8 +54,8 @@
             TotalBet();
             winMoney = check[r1] * betMoney + check[r2] * betMoney + check[r3] * betMoney;
             totalMoney = totalMoney = totalMoney + winMoney * 2 - totalBet;
-            MessageBox.Show($"Tổng tiền cược {totalBet}\n" +
-                $"Tổng tiền thắng {winMoney}, {betMoney}, {limit}");
+            // MessageBox.Show($"Tổng tiền cược {totalBet}\n" +
+                //$"Tổng tiền thắng {winMoney}, {betMoney}, {limit}");
             betMoney = 0;
             winMoney = 0;
             totalBet = 0;
@@ -64,7 +71,7 @@
             rb_1k.Checked = false; rb_2k.Checked = false; rb_10k.Checked = false;
             rb_1k.BackColor = Color.White; 
             rb_2k.BackColor = Color.White; 
-            rb_1k.BackColor = Color.White;
+            rb_10k.BackColor = Color.White;
         }
 
         // Tạo 1 phương thức để tính totalBet
@@ -142,7 +149,14 @@
                 rb_10k.BackColor = Color.White;
             }
         }
-
+        public bool CheckBetMoney()
+        {
+            if (totalMoney < betMoney)
+            {
+                MessageBox.Show("Bạn không đủ tiền để đặt mức cược này");
+                return false;
+            }return true;
+        }
         private void rb_2k_CheckedChanged(object sender, EventArgs e)
         {
             if (betMoney != 2000 && rb_2k.Checked)

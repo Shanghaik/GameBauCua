@@ -222,6 +222,7 @@
             // 
             // ptb_R3
             // 
+            this.ptb_R3.Image = ((System.Drawing.Image)(resources.GetObject("ptb_R3.Image")));
             this.ptb_R3.Location = new System.Drawing.Point(417, 66);
             this.ptb_R3.Name = "ptb_R3";
             this.ptb_R3.Size = new System.Drawing.Size(125, 125);
@@ -231,6 +232,7 @@
             // 
             // ptb_R2
             // 
+            this.ptb_R2.Image = ((System.Drawing.Image)(resources.GetObject("ptb_R2.Image")));
             this.ptb_R2.Location = new System.Drawing.Point(220, 66);
             this.ptb_R2.Name = "ptb_R2";
             this.ptb_R2.Size = new System.Drawing.Size(125, 125);
@@ -240,6 +242,7 @@
             // 
             // ptb_R1
             // 
+            this.ptb_R1.Image = ((System.Drawing.Image)(resources.GetObject("ptb_R1.Image")));
             this.ptb_R1.Location = new System.Drawing.Point(16, 66);
             this.ptb_R1.Name = "ptb_R1";
             this.ptb_R1.Size = new System.Drawing.Size(125, 125);
