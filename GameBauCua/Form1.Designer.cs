@@ -269,6 +269,7 @@
             this.rb_1k.TabStop = true;
             this.rb_1k.Text = "1000 đồng";
             this.rb_1k.UseVisualStyleBackColor = true;
+            this.rb_1k.CheckedChanged += new System.EventHandler(this.rb_1k_CheckedChanged);
             // 
             // rb_2k
             // 
@@ -281,6 +282,7 @@
             this.rb_2k.TabStop = true;
             this.rb_2k.Text = "2000 đồng";
             this.rb_2k.UseVisualStyleBackColor = true;
+            this.rb_2k.CheckedChanged += new System.EventHandler(this.rb_2k_CheckedChanged);
             // 
             // rb_10k
             // 
@@ -293,6 +295,7 @@
             this.rb_10k.TabStop = true;
             this.rb_10k.Text = "10000 đồng";
             this.rb_10k.UseVisualStyleBackColor = true;
+            this.rb_10k.CheckedChanged += new System.EventHandler(this.rb_10k_CheckedChanged);
             // 
             // label1
             // 
@@ -308,9 +311,10 @@
             // lb_Money
             // 
             this.lb_Money.AutoSize = true;
+            this.lb_Money.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lb_Money.Location = new System.Drawing.Point(789, 422);
             this.lb_Money.Name = "lb_Money";
-            this.lb_Money.Size = new System.Drawing.Size(18, 20);
+            this.lb_Money.Size = new System.Drawing.Size(39, 41);
             this.lb_Money.TabIndex = 8;
             this.lb_Money.Text = "...";
             // 
