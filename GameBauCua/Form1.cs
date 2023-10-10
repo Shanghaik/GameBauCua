@@ -2,6 +2,8 @@
 {
     public partial class Form1 : Form
     {
+        string username; // Tạo 2 biến để có thể lấy được từ form Login sang
+        int loginMoney; // Tạo 2 biến để có thể lấy được từ form Login sang
         int limit = 0; // Biến toàn cục
         int[] check = { 0, 0, 0, 0, 0, 0 }; // Mảng để thực hiện check các điều kiện
         // phụ thuộc vào vị trí của các lựa chọn
@@ -9,13 +11,22 @@
         int totalBet = 0; // Tổng tiền cược
         int totalMoney = 10000; // Tiền gốc mặc định là 1000
         int winMoney = 0; // Tổng tiền thắng cược
-        public Form1()// constructor 
+        public Form1(string username, int money)// constructor 
         {
             InitializeComponent(); // Khởi tạo các control
             // Set ảnh cho picturebox bằng code
             ptb_Bau.Image = Image.FromFile(@"C:\Users\Acer\Desktop\BCTC\Bau.jpg");
             ptb_Bau.SizeMode = PictureBoxSizeMode.StretchImage; // Fill vừa 
             lb_Money.Text = totalMoney.ToString();
+            this.username = username;
+            this.loginMoney = money;
+            if (this.username != null && this.loginMoney != null)
+            {
+                MessageBox.Show($"Chào mừng nhà tài phiệt {username} có {money} đồng");
+                totalMoney = money;
+                lb_Money.Text = totalMoney.ToString();  
+            }
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -26,7 +37,7 @@
         private void btn_Play_Click(object sender, EventArgs e)
         {
             if (!CheckBetMoney()) return;
-            
+
             if (limit * betMoney == 0) // một trong 2 hoặc cả 2 bằng không nghĩa là chưa đặt
             {
                 MessageBox.Show("Anh hai đi chơi không đặt cược à?");
@@ -55,7 +66,7 @@
             winMoney = check[r1] * betMoney + check[r2] * betMoney + check[r3] * betMoney;
             totalMoney = totalMoney = totalMoney + winMoney * 2 - totalBet;
             // MessageBox.Show($"Tổng tiền cược {totalBet}\n" +
-                //$"Tổng tiền thắng {winMoney}, {betMoney}, {limit}");
+            //$"Tổng tiền thắng {winMoney}, {betMoney}, {limit}");
             betMoney = 0;
             winMoney = 0;
             totalBet = 0;
@@ -69,8 +80,8 @@
             lb_Bau.Text = "0"; lb_Cua.Text = "0"; lb_Tom.Text = "0";
             lb_Ca.Text = "0"; lb_Ga.Text = "0"; lb_Huou.Text = "0";
             rb_1k.Checked = false; rb_2k.Checked = false; rb_10k.Checked = false;
-            rb_1k.BackColor = Color.White; 
-            rb_2k.BackColor = Color.White; 
+            rb_1k.BackColor = Color.White;
+            rb_2k.BackColor = Color.White;
             rb_10k.BackColor = Color.White;
         }
 
@@ -151,11 +162,12 @@
         }
         public bool CheckBetMoney()
         {
-            if (totalMoney < betMoney)
+            if (totalMoney < betMoney * limit)
             {
                 MessageBox.Show("Bạn không đủ tiền để đặt mức cược này");
                 return false;
-            }return true;
+            }
+            return true;
         }
         private void rb_2k_CheckedChanged(object sender, EventArgs e)
         {
