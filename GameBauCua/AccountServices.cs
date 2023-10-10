@@ -42,6 +42,32 @@ namespace GameBauCua
             }
             return null;
         }
+
+        public static void SavePlayData(string username, int money)
+        {
+            // Lấy List account ra để check và sửa tài khaonr trùng với username truyền vào
+            List<Account> accounts = GetAllAccounts(); // Lấy ra bằng cách getall
+            foreach (var account in accounts) // Kiểm tra từng acccount trong danh sách vừa lấy
+            {
+                if (account.Username == username) // Khi username trùng thì update tiền
+                {
+                    account.Money = money;
+                    break;
+                }
+            }
+            List<string> allAccounts = new List<string>(); // Tạo 1 list để lưu vào file
+            // Lưu cả List vào file
+            foreach (var item in accounts) // Tạo ra các dòng cho data
+            {
+                string accountData = $"{item.Username}|{item.Password}|{item.Money}";
+                // Tạo ra các Line với format chuẩn username|password|money
+                allAccounts.Add(accountData); // Add các dòng vừa tạo vào List để ghi đề vào file txt
+            }
+            // Xóa dữ liệu gốc trong file bằng cách ghi đè 1 chuỗi rỗng
+            // Thêm dữ liệu từ data vừa tạo ra vào file bằng cách ghi đè
+            File.WriteAllLines("account.txt", allAccounts); // Ghi đè dữ liệu vừa thua được vào file
+        }
+
     }
     public class Account
     {

@@ -190,5 +190,11 @@
                 rb_1k.BackColor = Color.White;
             }
         }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Khi mà form đóng lại thì lưu tiền vào đúng account mà mình đăng nhập
+            AccountServices.SavePlayData(username, totalMoney);
+        }
     }
 }
